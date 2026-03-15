@@ -1,4 +1,7 @@
-# 一.语法基础
+## 目录
+  - [常用语句](#一常用语句)
+  - [string字符串](#二string字符串)
+
 
 ## （一）常用语句
 
@@ -139,7 +142,6 @@ if(pos3 != string::npos)    //这样输出比较保险
 string s = "hello world";
 string sub1 = s.substr(6);      // "world"（从位置6到末尾）
 string sub2 = s.substr(6, 3);   // "wor"（从位置6开始，取3个字符，注意别越界）
-
 ```
 
 ### 9.比较大小
@@ -157,7 +159,6 @@ int arr[100];
 int n; cin >> n;
 for (int i = 1; i <= n; i++)cin >> arr[i];
 sort(arr + 1, arr + 1 + n);
-
 ```
 
 对数值排序时按升序排序，对bool类型排序时false(0)在前true(1)在后，
@@ -188,7 +189,6 @@ bool cmp(const pair<int, int>& a, const pair<int, int>& b)
 }
 sort(arr.begin(),arr.end(),cmp);
 //对pair类型数组，优先按second降序，其次按first升序
-
 ```
 
 ### 2.交换元素
@@ -217,7 +217,6 @@ auto max_it = max_element(v.begin(), v.end());
 int mx = *max_it;      // mx = 9
 auto min_it = min_element(v.begin(), v.end());
 int mn = *min_it;      // mn = 1
-
 ```
 
 传入两个迭代器[l,r)，返回一个迭代器
@@ -231,7 +230,6 @@ vector<int> v = {5, 10, 6, 4, 3, 2, 6, 7, 9, 3};
 int k = 3;                 // 找第k+1小的元素（0-based）
 nth_element(v.begin(), v.begin() + k, v.end());
 cout << v[k] << endl;      //v[k] = 4 （因为下标从0开始算）
-
 ```
 
 排序后其左侧一定比它小，右侧一定比它大，但不保证完全排好序
@@ -251,7 +249,6 @@ isupper(c);  // 是否是大写字母
 tolower(c);  // 转小写（如果原本不是大写字母，保持不变）
 toupper(c);  // 转大写（如果原本不是小写字母，保持不变）
 //传入char类型，返回int类型（ASCII码，可转成char）
-
 ```
 
 时间复杂度均为O(1)。
@@ -274,7 +271,6 @@ while (prev_permutation(v.begin(), v.end()))
 {
     //处理数组
 }
-
 ```
 
 支持用在vector、内置数组、string、deque上。会修改原数组。
@@ -297,7 +293,6 @@ while (prev_permutation(v.begin(), v.end()))
 vector<int> v = {1, 2, 3, 4, 5};
 reverse(v.begin(), v.end());
 reverse(v.begin() + 1, v.begin() + 4);  //反转下标区间[1,3]，这样写的时候注意别越界
-
 ```
 
 支持用在vector、内置数组、string、deque、list上。
@@ -315,7 +310,6 @@ auto last = unique(vec.begin(), vec.end());
 
 int n = last - vec.begin();    //剩余元素个数（也可删除后用size()得到）
 vec.erase(last, vec.end());
-
 ```
 
 支持vector、内置数组、string、deque、list等容器。
@@ -335,7 +329,6 @@ cout << lb - v.begin() << endl; // 输出: 2
 auto ub = upper_bound(v.begin(), v.end(), target);
 cout << ub - v.begin() << endl; // 输出: 4
 //若不存在，则返回v.end()
-
 ```
 
 常用于统计某元素出现次数（ub-lb）、离散化（lb-begin()）、查找某元素（保证存在）最后一次出现的位置（ub-1）、查找某元素插入位置（配合insert使用）等。
@@ -356,7 +349,6 @@ pair<int, string> p2(1, "hello");      // 直接初始化
 pair<int, double> p3 = {2, 3.14};      // 列表初始化
 
 cout << p2.first << " " << p2.second << endl;  // 输出: 1 hello
-
 ```
 
 pair可以嵌套。
@@ -377,7 +369,6 @@ vector<int> v2(10);            // 大小为10，默认值0
 vector<int> v3(5, 100);        // 大小为5，每个元素都是100
 vector<int> v4 = {1, 2, 3};    // 列表初始化
 vector<vector<int>> v5;        // 二维vector
-
 ```
 
 支持操作：
@@ -419,7 +410,6 @@ cout << vec.front();    //2
 vec.resize(2);      //缩小到大小为2，变为“2 99”
 vec.resize(4);      //扩大，默认填充0，变为“2 99 0 0”
 vec.resize(6,8);    //扩大，填充8，变为“2 99 0 0 8 8”
-
 ```
 
 ### 3.stack
@@ -498,7 +488,6 @@ deque<int> dq1;                       // 空deque
 deque<int> dq2(5);                    // 大小为5，默认值0
 deque<int> dq3(5, 100);               // 大小为5，每个元素都是100
 deque<int> dq4 = { 1, 2, 3, 4, 5 };   // 列表初始化
-
 ```
 
 支持操作：
@@ -530,7 +519,6 @@ for (auto it = dq.begin(); it != dq.end(); ++it)
 {
     cout << *it << " ";  //正向遍历（反向也支持）
 } 
-
 ```
 
 支持clear()、使用正向/反向迭代器遍历、下标随机访问。
@@ -546,7 +534,6 @@ for (auto it = dq.begin(); it != dq.end(); ++it)
 ```c++
 set<int>arr1;                  //升序排序
 set<int, greater<int>>arr2;    //降序排序
-
 ```
 
 支持操作：
@@ -583,7 +570,6 @@ if (it != s.begin())
     auto prev_it = prev(it);
     cout << *prev_it << endl; // 输出3
 }
-
 ```
 
 ```c++
@@ -592,7 +578,6 @@ set<int> s = {1, 3, 5, 7};
 auto ub1 = s.upper_bound(6); // 指向7（第一个>6的元素）
 auto ub2 = s.upper_bound(7); // 返回end()（所有元素都<=7）
 auto ub3 = s.upper_bound(0); // 指向1（第一个>0的元素）
-
 ```
 
 ### 8.multiset
@@ -672,7 +657,6 @@ for (auto i = range.first; i != range.second; i++)
 {
     cout << (*i).first << ' ' << (*i).second << '\n';
 }
-
 ```
 
 ### 12.unordered_map
